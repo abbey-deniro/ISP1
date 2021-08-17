@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.text.Format;
@@ -23,10 +27,15 @@ public class Controller implements Initializable {
         DateFormatter();
     }
 
-
-
-    @FXML
-    private TableColumn<?, ?> day1Column;
+    @FXML private TableColumn<Schedule, String> employeeColumn;
+    @FXML private TableColumn<Schedule, String> day1Column;
+    @FXML private TableColumn<Schedule, String> day2Column;
+    @FXML private TableColumn<Schedule, String> day3Column;
+    @FXML private TableColumn<Schedule, String> day4Column;
+    @FXML private TableColumn<Schedule, String> day5Column;
+    @FXML private TableColumn<Schedule, String> day6Column;
+    @FXML private TableColumn<Schedule, String> day7Column;
+    @FXML private TableView<Schedule> table;
 
     @FXML
     private static Button add;
@@ -81,6 +90,22 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         init();
+        employeeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("name"));
+        day1Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day1"));
+        day2Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day2"));
+        day3Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day3"));
+        day4Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day4"));
+        day5Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day5"));
+        day6Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day6"));
+        day7Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day7"));
+
+        final ObservableList<Schedule> list = FXCollections.observableArrayList(
+                new Schedule("Bob","9-5", "4=6", "3-8", "2-10", "3-8", "5-6", "4-5")
+//                new Test("yo")
+//                new Test("Hello");
+        );
+        this.table.setItems(list);
+
         //Add();
       //  add.setOnAction(this::handleButtonClick);
     }

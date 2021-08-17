@@ -25,16 +25,16 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <TableView layoutX="284.0" layoutY="77.0" prefHeight="368.0" prefWidth="603.0">
+            <TableView fx:id="table" layoutX="284.0" layoutY="77.0" prefHeight="368.0" prefWidth="603.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Employees" />
+                <TableColumn fx:id="employeeColumn" prefWidth="75.0" text="Employees" />
                 <TableColumn id="day1Column" fx:id="day1Column" prefWidth="75.0" text="Monday" />
-                  <TableColumn prefWidth="75.0" text="Tuesday" />
-                  <TableColumn prefWidth="75.0" text="Wednesday" />
-                  <TableColumn prefWidth="75.0" text="Thursday" />
-                  <TableColumn prefWidth="75.0" text="Friday" />
-                  <TableColumn prefWidth="75.0" text="Saturday" />
-                  <TableColumn prefWidth="75.0" text="Sunday" />
+                  <TableColumn fx:id="day2Column" prefWidth="75.0" text="Tuesday" />
+                  <TableColumn fx:id="day3Column" prefWidth="75.0" text="Wednesday" />
+                  <TableColumn fx:id="day4Column" prefWidth="75.0" text="Thursday" />
+                  <TableColumn fx:id="day5Column" prefWidth="75.0" text="Friday" />
+                  <TableColumn fx:id="day6Column" prefWidth="75.0" text="Saturday" />
+                  <TableColumn fx:id="day7Column" prefWidth="75.0" text="Sunday" />
               </columns>
             </TableView>
             <ButtonBar layoutX="614.0" layoutY="32.0" prefHeight="40.0" prefWidth="273.0">
