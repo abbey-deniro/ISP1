@@ -6,8 +6,8 @@ public class Inventory extends Item {
     ArrayList<Item> items = new ArrayList<Item>();
 
 
-    public void addItems(String name, int quantity, int price, int minNumber, int itemNumber) {
-        items.add(new Item(name,quantity,price,minNumber,itemNumber));
+    public void addItems(String name, int quantity, int price, int minNumber, int itemNumber, String category) {
+        items.add(new Item(name,quantity,price,minNumber,itemNumber, category));
     }
 
     public void removeItems(int itemNumber) {

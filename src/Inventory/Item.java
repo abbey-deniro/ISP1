@@ -2,10 +2,15 @@ package Inventory;
 
 public class Item {
     String name;
-    int Quantity;
-    int price;
+    String category;
+    int quantity;
+    float price;
     int minNumber;
     int ItemNumber;
+
+    public String getCategory() {
+        return category;
+    }
 
     public int getItemNumber() {
         return ItemNumber;
@@ -32,14 +37,14 @@ public class Item {
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
-        Quantity = quantity;
+        quantity = quantity;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -47,16 +52,17 @@ public class Item {
         this.price = price;
     }
 
-    public Item(String name, int quantity, int price,int minNumber,int itemNumber) {
+    public Item(String name, int quantity, float price,int minNumber,int itemNumber, String category) {
         if(quantity<minNumber){
             //turnBoxred
         }else{
             //boxisgreen
         }
         this.name = name;
-        Quantity = quantity;
+        this.quantity = quantity;
         this.price = price;
         this.ItemNumber = itemNumber;
+        this.category = category;
     }
     public Item(){}
 }
