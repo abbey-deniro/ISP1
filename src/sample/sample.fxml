@@ -11,35 +11,35 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="Background" prefHeight="200.0" prefWidth="200.0" stylesheets="@ScheduleStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Pane prefHeight="596.0" prefWidth="923.0">
+      <Pane id="background" prefHeight="596.0" prefWidth="923.0">
          <children>
-            <Label layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="184.0" text="Schedule">
+            <Label id="ScheduleLabel" fx:id="ScheduleLabel" layoutX="284.0" layoutY="6.0" prefHeight="17.0" prefWidth="184.0" stylesheets="@ScheduleStyle.css" text="Schedule">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label layoutX="284.0" layoutY="52.0" prefHeight="17.0" prefWidth="49.0" text="Week of:">
+            <Label layoutX="284.0" layoutY="64.0" prefHeight="17.0" prefWidth="49.0" text="Week of:">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <TableView fx:id="table" layoutX="284.0" layoutY="77.0" prefHeight="368.0" prefWidth="603.0">
+            <TableView fx:id="table" layoutX="284.0" layoutY="96.0" prefHeight="368.0" prefWidth="603.0">
               <columns>
-                <TableColumn fx:id="employeeColumn" prefWidth="75.0" text="Employees" />
+                <TableColumn id="employeeColumn" fx:id="employeeColumn" prefWidth="75.0" text="Employees" />
                 <TableColumn id="day1Column" fx:id="day1Column" prefWidth="75.0" text="Monday" />
-                  <TableColumn fx:id="day2Column" prefWidth="75.0" text="Tuesday" />
-                  <TableColumn fx:id="day3Column" prefWidth="75.0" text="Wednesday" />
-                  <TableColumn fx:id="day4Column" prefWidth="75.0" text="Thursday" />
-                  <TableColumn fx:id="day5Column" prefWidth="75.0" text="Friday" />
-                  <TableColumn fx:id="day6Column" prefWidth="75.0" text="Saturday" />
-                  <TableColumn fx:id="day7Column" prefWidth="75.0" text="Sunday" />
+                  <TableColumn id="day2Column" fx:id="day2Column" prefWidth="75.0" text="Tuesday" />
+                  <TableColumn id="day3Column" fx:id="day3Column" prefWidth="75.0" text="Wednesday" />
+                  <TableColumn id="day4Column" fx:id="day4Column" prefWidth="75.0" text="Thursday" />
+                  <TableColumn id="day5Column" fx:id="day5Column" prefWidth="75.0" text="Friday" />
+                  <TableColumn id="day6Column" fx:id="day6Column" prefWidth="75.0" text="Saturday" />
+                  <TableColumn id="day7Column" fx:id="day7Column" prefWidth="75.0" text="Sunday" />
               </columns>
             </TableView>
-            <ButtonBar layoutX="614.0" layoutY="32.0" prefHeight="40.0" prefWidth="273.0">
+            <ButtonBar layoutX="614.0" layoutY="53.0" prefHeight="40.0" prefWidth="273.0">
               <buttons>
-                <Button fx:id="add" mnemonicParsing="false" onAction="#handleButtonClick" />
+                <Button fx:id="add" mnemonicParsing="false" onAction="#handleButtonClick" text="Add" />
                   <Button mnemonicParsing="false" text="Delete" />
                   <Button mnemonicParsing="false" text="Modify" />
               </buttons>
@@ -55,7 +55,7 @@
             <CheckBox layoutX="90.0" layoutY="332.0" mnemonicParsing="false" text="Delivery" />
             <CheckBox layoutX="90.0" layoutY="400.0" mnemonicParsing="false" text="Prepper" />
             <CheckBox layoutX="90.0" layoutY="288.0" mnemonicParsing="false" text="Cook" />
-            <Label fx:id="weekOfLabel" layoutX="342.0" layoutY="52.0" prefHeight="17.0" prefWidth="214.0" />
+            <Label fx:id="weekOfLabel" layoutX="342.0" layoutY="64.0" prefHeight="17.0" prefWidth="214.0" />
             <BorderPane layoutX="39.0" layoutY="32.0" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <Label text="LOGO" BorderPane.alignment="CENTER" />

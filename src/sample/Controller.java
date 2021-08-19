@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+//import javax.swing.table.TableColumn;
 import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -100,14 +101,10 @@ public class Controller implements Initializable {
         day7Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day7"));
 
         final ObservableList<Schedule> list = FXCollections.observableArrayList(
-                new Schedule("Bob","9-5", "4=6", "3-8", "2-10", "3-8", "5-6", "4-5")
-//                new Test("yo")
-//                new Test("Hello");
+                new Schedule("Bob", "9-5", "4-6", "3-8", "2-10", "3-8", "5-6", "4-5")
+
         );
         this.table.setItems(list);
-
-        //Add();
-      //  add.setOnAction(this::handleButtonClick);
     }
 
 
