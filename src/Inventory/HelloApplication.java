@@ -1,5 +1,7 @@
 package Inventory;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -32,8 +34,12 @@ public class HelloApplication implements Initializable {
         quantityCol.setCellValueFactory(new PropertyValueFactory<Item, String>("quantity"));
         priceCol.setCellValueFactory(new PropertyValueFactory<Item, String>("price"));
 
-        Item i = new Item("Cheese", 12, 1.40f, 1, 2, "Ingredient");
+        Inventory i = new Inventory();
+        i.addItems("Cheese", 12, 1.40f, 1, 2, "Ingredient");
+        i.write();
+        //i.read();
 
-        table.getItems().add(i);
+        ObservableList<Item> list = FXCollections.observableArrayList(i.getItems());
+        table.setItems(list);
     }
 }
