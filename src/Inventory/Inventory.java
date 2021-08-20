@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Inventory extends Item implements Serializable {
 
-    private ArrayList<Item> items = new ArrayList<Item>();
+    ArrayList<Item> items = new ArrayList<Item>();
 
 
-    public void addItems(String name, int quantity, float price, int minNumber, int itemNumber, String category) {
-        items.add(new Item(name,quantity,price,minNumber,itemNumber, category));
+    public void addItems(String name, int quantity, float price, int minNumber,  String category) {
+        items.add(new Item(name,quantity,price,minNumber, category));
     }
 
     public void removeItems(int itemNumber) {
@@ -31,12 +31,11 @@ public class Inventory extends Item implements Serializable {
     public void write() {
         System.out.println(items);
         try {
-            FileOutputStream fos = new FileOutputStream("Inventory.txt");
+            FileOutputStream fos = new FileOutputStream("Inventory.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-//            for (T w : t){
-//                System.out.println(w.toString());
-//            }
+
             oos.writeObject(this.items);
+
             oos.close();
             fos.close();
         }
@@ -52,15 +51,11 @@ public class Inventory extends Item implements Serializable {
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             this.items = (ArrayList<Item>) ois.readObject();
-            //System.out.println(t.toString());
+
             ois.close();
             fis.close();
         }
         catch (Exception e) {
         }
-
-//        for (T T : this.t) {
-//            System.out.println(T.toString());
-//        }
     }
 }

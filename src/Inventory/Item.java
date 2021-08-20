@@ -1,6 +1,8 @@
 package Inventory;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     String name;
     String category;
     int quantity;
@@ -52,7 +54,7 @@ public class Item {
         this.price = price;
     }
 
-    public Item(String name, int quantity, float price,int minNumber,int itemNumber, String category) {
+    public Item(String name, int quantity, float price,int minNumber, String category) {
         if(quantity<minNumber){
             //turnBoxred
         }else{
@@ -61,7 +63,7 @@ public class Item {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
-        this.ItemNumber = itemNumber;
+        //this.ItemNumber = itemNumber;
         this.category = category;
     }
     public Item(){}

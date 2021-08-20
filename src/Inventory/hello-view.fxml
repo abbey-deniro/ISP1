@@ -27,7 +27,7 @@
                     <Font name="Bookshelf Symbol 7" size="55.0" />
                 </font>
             </Label>
-            <Button id="addButton" layoutX="739.0" layoutY="579.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Add">
+            <Button id="addButton" fx:id="btnAdd" layoutX="739.0" layoutY="579.0" mnemonicParsing="false" onAction="#btnAddItem" style="-fx-background-color: green;" text="Add">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
