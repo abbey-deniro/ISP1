@@ -27,7 +27,11 @@ public class AddItemController extends HelloApplication implements Initializable
 
     @FXML private void addItem(ActionEvent event){
         i.read();
-        super.i.addItems(txtName.getText(), Integer.parseInt(txtQuantity.getText()), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtMinQuantity.getText()), txtCategory.getText());
+        try {
+            super.i.addItems(txtName.getText(), Integer.parseInt(txtQuantity.getText()), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtMinQuantity.getText()), txtCategory.getText());
+        }catch(Exception e){
+            System.out.println("Invalid input. Please try again.");
+        }
         i.write();
         Stage s = (Stage) btnAdd.getScene().getWindow();
         s.close();

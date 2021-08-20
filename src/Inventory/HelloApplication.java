@@ -37,7 +37,6 @@ public class HelloApplication implements Initializable {
     }
 
     @FXML private void btnAddItem(ActionEvent event){
-        System.out.println(i.getItems());
         Stage popup = new Stage();
         try {
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("addItem.fxml")), 1000, 800);
