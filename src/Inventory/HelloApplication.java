@@ -24,12 +24,12 @@ public class HelloApplication implements Initializable {
     @FXML
     private Label welcomeText;
 
-    @FXML protected TableView<Item> table;
-    @FXML TableColumn<Item, String> categoryCol;
-    @FXML TableColumn<Item, String> itemCol;
-    @FXML TableColumn<Item, String> quantityCol;
-    @FXML TableColumn<Item, String> priceCol;
-    @FXML Button btnAdd;
+    @FXML private TableView<Item> table;
+    @FXML private TableColumn<Item, String> categoryCol;
+    @FXML private TableColumn<Item, String> itemCol;
+    @FXML private TableColumn<Item, String> quantityCol;
+    @FXML private TableColumn<Item, String> priceCol;
+    @FXML private Button btnAdd;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -49,6 +49,16 @@ public class HelloApplication implements Initializable {
         popup.showAndWait();
 
         loadTable();
+    }
+
+    @FXML private void btnRemoveItem(ActionEvent event){
+        Item item = table.getSelectionModel().getSelectedItem();
+        table.getItems().remove(item);
+
+        int index = i.getItems().indexOf(item);
+        i.getItems().remove(index);
+
+        i.write();
     }
 
     public void loadTable(){

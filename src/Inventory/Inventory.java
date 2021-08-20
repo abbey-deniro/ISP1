@@ -12,10 +12,6 @@ public class Inventory extends Item implements Serializable {
         items.add(new Item(name,quantity,price,minNumber, category));
     }
 
-    public void removeItems(int itemNumber) {
-        items.remove(itemNumber--);
-    }
-
     public void editItems(String name, int quantity, int price, int minNumber, int itemNumber) {
         itemNumber--;
         items.get(itemNumber).setName(name);

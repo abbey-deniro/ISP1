@@ -37,7 +37,7 @@
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font></Button>
-            <Button id="removeButton" layoutX="792.0" layoutY="579.0" mnemonicParsing="false" style="-fx-background-color: maroon;" text="Remove">
+            <Button id="removeButton" layoutX="792.0" layoutY="579.0" mnemonicParsing="false" onAction="#btnRemoveItem" style="-fx-background-color: maroon;" text="Remove">
                 <cursor>
                     <Cursor fx:constant="HAND" />
                 </cursor>
