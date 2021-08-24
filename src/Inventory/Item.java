@@ -10,6 +10,10 @@ public class Item implements Serializable {
     int minNumber;
     int ItemNumber;
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -50,7 +54,7 @@ public class Item implements Serializable {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -63,7 +67,6 @@ public class Item implements Serializable {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
-        //this.ItemNumber = itemNumber;
         this.category = category;
     }
     public Item(){}
