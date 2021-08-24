@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import sample.Main;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,22 +26,43 @@ public class AddItemController extends HelloApplication implements Initializable
     @FXML private TextField txtMinQuantity;
     @FXML private TextField txtPrice;
 
-    @FXML private void addItem(ActionEvent event){
-        i.read();
-        try {
-            super.i.addItems(txtName.getText(), Integer.parseInt(txtQuantity.getText()), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtMinQuantity.getText()), txtCategory.getText());
-        }catch(Exception e){
-            System.out.println("Invalid input. Please try again.");
-        }
-        i.write();
-        Stage s = (Stage) btnAdd.getScene().getWindow();
-        s.close();
+    @FXML private void addItem(ActionEvent event) {
+        int index = -1;
+        Stage stage = (Stage) btnAdd.getScene().getWindow();
 
-//        ObservableList<Item> list = FXCollections.observableArrayList(i.getItems());
-//        super.table.setItems(list);
+        try {
+            index = (int) stage.getUserData();
+        } catch (Exception e) {
+        }
+
+        i.read();
+        if (index == -1){
+            try {
+                super.i.addItems(txtName.getText(), Integer.parseInt(txtQuantity.getText()), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtMinQuantity.getText()), txtCategory.getText());
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+        else{
+            try {
+                System.out.println("YO");
+                Item item = super.i.getItems().get(index);
+                item.setCategory(txtCategory.getText());
+                item.setName(txtName.getText());
+                item.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                item.setMinNumber(Integer.parseInt(txtMinQuantity.getText()));
+                item.setPrice(Float.parseFloat(txtPrice.getText()));
+            }catch (Exception e) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+
+        i.write();
+        stage.close();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(super.i.getItems());
+
     }
 }
