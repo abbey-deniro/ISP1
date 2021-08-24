@@ -43,7 +43,7 @@ public class Item implements Serializable {
     }
 
     public void setQuantity(int quantity) {
-        quantity = quantity;
+        this.quantity = quantity;
     }
 
     public float getPrice() {

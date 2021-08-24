@@ -7,14 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,6 +59,25 @@ public class HelloApplication implements Initializable {
 
         i.write();
     }
+
+    @FXML private void addQuantity(ActionEvent event){
+        Item item = table.getSelectionModel().getSelectedItem();
+        item.setQuantity(item.getQuantity()+1);
+        i.write();
+        table.refresh();
+        table.getSelectionModel().getSelectedItem();
+
+    }
+    @FXML private void removeQuantity(ActionEvent event){
+        Item item = table.getSelectionModel().getSelectedItem();
+        item.setQuantity(item.getQuantity()-1);
+        i.write();
+        table.refresh();
+        table.getSelectionModel().getSelectedItem();
+
+    }
+
+
 
     public void loadTable(){
         i.read();
