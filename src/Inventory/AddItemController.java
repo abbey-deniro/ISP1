@@ -45,7 +45,6 @@ public class AddItemController extends HelloApplication implements Initializable
         }
         else{
             try {
-                System.out.println("YO");
                 Item item = super.i.getItems().get(index);
                 item.setCategory(txtCategory.getText());
                 item.setName(txtName.getText());

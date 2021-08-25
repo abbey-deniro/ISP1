@@ -25,7 +25,6 @@ public class Inventory extends Item implements Serializable {
     }
 
     public void write() {
-        System.out.println(items);
         try {
             FileOutputStream fos = new FileOutputStream("Inventory.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
