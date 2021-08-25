@@ -25,6 +25,7 @@ public class HelloApplication implements Initializable {
     @FXML private TableColumn<Item, String> itemCol;
     @FXML private TableColumn<Item, String> quantityCol;
     @FXML private TableColumn<Item, String> priceCol;
+    @FXML private TableColumn<Item, String> txtMinQuantity;
     @FXML private Button btnAdd;
 
     @FXML
@@ -122,6 +123,7 @@ public class HelloApplication implements Initializable {
         itemCol.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<Item, String>("quantity"));
         priceCol.setCellValueFactory(new PropertyValueFactory<Item, String>("price"));
+        txtMinQuantity.setCellValueFactory(new PropertyValueFactory<Item, String>("minNumber"));
 
         loadTable();
     }
