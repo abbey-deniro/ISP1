@@ -7,15 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -59,6 +55,57 @@ public class HelloApplication implements Initializable {
         i.getItems().remove(index);
 
         i.write();
+    }
+
+    @FXML private void btnEditItem(ActionEvent event) throws IOException {
+        Item item = table.getSelectionModel().getSelectedItem();
+        int index = i.getItems().indexOf(item);
+
+        Stage popup = new Stage();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("addItem.fxml")), 1000, 800);
+        Button b = (Button) scene.lookup("#btnAdd");
+        b.setText("Save");
+
+        TextField category = (TextField) scene.lookup("#txtCategory");
+        TextField name = (TextField) scene.lookup("#txtName");
+        TextField quantity = (TextField) scene.lookup("#txtQuantity");
+        TextField minQuantity = (TextField) scene.lookup("#txtMinQuantity");
+        TextField price = (TextField) scene.lookup("#txtPrice");
+
+        try {
+            category.setText(item.getCategory());
+            name.setText(item.getName());
+            quantity.setText(Integer.toString(item.getQuantity()));
+            minQuantity.setText(Integer.toString(item.getMinNumber()));
+            price.setText(Float.toString(item.getPrice()));
+        }catch(Exception e){e.printStackTrace();}
+
+        popup.setTitle("Edit an item");
+        popup.setUserData(index);
+        popup.setScene(scene);
+        popup.setWidth(300);
+        popup.setHeight(400);
+        popup.showAndWait();
+
+        loadTable();
+    }
+
+
+    @FXML private void addQuantity(ActionEvent event){
+        Item item = table.getSelectionModel().getSelectedItem();
+        item.setQuantity(item.getQuantity()+1);
+        i.write();
+        table.refresh();
+        table.getSelectionModel().getSelectedItem();
+
+    }
+    @FXML private void removeQuantity(ActionEvent event){
+        Item item = table.getSelectionModel().getSelectedItem();
+        item.setQuantity(item.getQuantity()-1);
+        i.write();
+        table.refresh();
+        table.getSelectionModel().getSelectedItem();
+
     }
 
     public void loadTable(){
