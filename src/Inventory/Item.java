@@ -68,6 +68,7 @@ public class Item implements Serializable {
         this.quantity = quantity;
         this.price = price;
         this.category = category;
+        this.minNumber = minNumber;
     }
     public Item(){}
 }

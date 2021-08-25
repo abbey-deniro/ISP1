@@ -54,10 +54,11 @@
                 </font></Button>
             <TableView fx:id="table" layoutX="-2.0" layoutY="75.0" prefHeight="497.0" prefWidth="981.0" style="-fx-background-color: beige;">
                 <columns>
-                    <TableColumn fx:id="categoryCol" prefWidth="75.0" text="Category " />
-                    <TableColumn fx:id="itemCol" prefWidth="75.0" text="Item" />
-                    <TableColumn fx:id="quantityCol" prefWidth="75.0" text="Quantity" />
-                    <TableColumn fx:id="priceCol" prefWidth="75.0" text="Price" />
+                    <TableColumn fx:id="categoryCol" prefWidth="125.20000839233398" text="Category " />
+                    <TableColumn fx:id="itemCol" prefWidth="523.2000274658203" text="Item" />
+                    <TableColumn fx:id="quantityCol" prefWidth="113.0" text="Quantity" />
+                    <TableColumn fx:id="priceCol" prefWidth="133.39996337890625" text="Price" />
+               <TableColumn fx:id="minQuantityCol" prefWidth="86.5999755859375" text="Min Quantity" />
                 </columns>
             </TableView>
          <Button layoutX="25.0" layoutY="579.0" mnemonicParsing="false" onAction="#addQuantity" style="-fx-background-color: green;" text="+">
