@@ -25,6 +25,7 @@ public class HelloApplication implements Initializable {
     @FXML private TableColumn<Item, String> itemCol;
     @FXML private TableColumn<Item, String> quantityCol;
     @FXML private TableColumn<Item, String> priceCol;
+    @FXML private TableColumn<Item, String> minQuantityCol;
     @FXML private Button btnAdd;
 
     @FXML
@@ -99,6 +100,7 @@ public class HelloApplication implements Initializable {
         table.getSelectionModel().getSelectedItem();
 
     }
+
     @FXML private void removeQuantity(ActionEvent event){
         Item item = table.getSelectionModel().getSelectedItem();
         item.setQuantity(item.getQuantity()-1);
@@ -116,12 +118,14 @@ public class HelloApplication implements Initializable {
         ObservableList<Item> list = FXCollections.observableArrayList(i.getItems());
         table.setItems(list);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         categoryCol.setCellValueFactory(new PropertyValueFactory<Item, String>("category"));
         itemCol.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<Item, String>("quantity"));
         priceCol.setCellValueFactory(new PropertyValueFactory<Item, String>("price"));
+        minQuantityCol.setCellValueFactory(new PropertyValueFactory<Item, String>("minNumber"));
 
         loadTable();
     }
