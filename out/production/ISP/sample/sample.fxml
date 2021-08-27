@@ -39,7 +39,7 @@
             </TableView>
             <ButtonBar layoutX="614.0" layoutY="53.0" prefHeight="40.0" prefWidth="273.0">
               <buttons>
-                <Button fx:id="add" mnemonicParsing="false" onAction="#handleButtonClick" text="Add" />
+                <Button fx:id="add" mnemonicParsing="false" onAction="#btnAddEmployee" text="Add" />
                   <Button mnemonicParsing="false" text="Delete" />
                   <Button mnemonicParsing="false" text="Modify" />
               </buttons>
