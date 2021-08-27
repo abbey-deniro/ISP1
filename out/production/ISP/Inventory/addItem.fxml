@@ -6,11 +6,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="296.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Inventory.AddItemController">
    <children>
-      <TextField fx:id="txtCategory" layoutX="75.0" layoutY="32.0" promptText="Category" />
-      <TextField fx:id="txtName" layoutX="75.0" layoutY="73.0" promptText="Name" />
-      <TextField fx:id="txtQuantity" layoutX="75.0" layoutY="118.0" promptText="Quantity" />
-      <TextField fx:id="txtMinQuantity" layoutX="75.0" layoutY="157.0" promptText="Minimum Quantity" />
-      <TextField fx:id="txtPrice" layoutX="75.0" layoutY="197.0" promptText="Price" />
-      <Button fx:id="btnAdd" layoutX="130.0" layoutY="245.0" mnemonicParsing="false" onAction="#addItem" text="Add" />
+      <TextField id="txtCategory" fx:id="txtCategory" layoutX="75.0" layoutY="32.0" promptText="Category" />
+      <TextField id="txtName" fx:id="txtName" layoutX="75.0" layoutY="73.0" promptText="Name" />
+      <TextField id="txtQuantity" fx:id="txtQuantity" layoutX="75.0" layoutY="118.0" promptText="Quantity" />
+      <TextField id="txtMinQuantity" fx:id="txtMinQuantity" layoutX="75.0" layoutY="157.0" promptText="Minimum Quantity" />
+      <TextField id="txtPrice" fx:id="txtPrice" layoutX="75.0" layoutY="197.0" promptText="Price" />
+      <Button id="btnAdd" fx:id="btnAdd" layoutX="130.0" layoutY="245.0" mnemonicParsing="false" onAction="#addItem" text="Add" />
    </children>
 </Pane>

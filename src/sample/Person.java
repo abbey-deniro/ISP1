@@ -1,14 +1,26 @@
 package sample;
 
-public class Person {
-    public String getName() {
-        return name;
-    }
+import java.io.Serializable;
 
-    String name;
-    String jobTitle;
-    int minHours;
-    int maxHours;
+public class Person implements Serializable {
+
+//    String name;
+//    String jobTitle;
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public String getJobTitle() {
+//        return jobTitle;
+//    }
+//
+//    public Person(String name, String jobTitle) {
+//        this.name = name;
+//        this.jobTitle = jobTitle;
+//    }
+//
+//    public Person(){}
 
 
 }

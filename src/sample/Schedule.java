@@ -1,9 +1,12 @@
 package sample;
 
-public class Schedule extends Person{
+import java.io.*;
+import java.util.ArrayList;
 
-    //int hours;
-    //int biweeklyHours;
+public class Schedule implements Serializable {
+    ArrayList<Schedule> employeeSchedule = new ArrayList<>();
+    public ArrayList<Schedule> getSchedule() {return employeeSchedule;}
+    String empName;
     String day1;
     String day2;
     String day3;
@@ -11,9 +14,10 @@ public class Schedule extends Person{
     String day5;
     String day6;
     String day7;
-
-    public Schedule(String name, String day1, String day2, String day3, String day4, String day5, String day6, String day7) {
-       super.name = name;
+    public Schedule(String empName, String day1, String day2, String day3, String day4, String day5,
+                    String day6,
+                    String day7) {
+       this.empName = empName;
         this.day1 = day1;
         this.day2 = day2;
         this.day3 = day3;
@@ -21,6 +25,9 @@ public class Schedule extends Person{
         this.day5 = day5;
         this.day6 = day6;
         this.day7 = day7;
+    }
+    public Schedule() {
+
     }
 
     public String getDay1() {
@@ -51,8 +58,49 @@ public class Schedule extends Person{
         return day7;
     }
 
-    public static void Add(){
+    public void setEmployeeSchedule(ArrayList<Schedule> employeeSchedule) {
+        this.employeeSchedule = employeeSchedule;
+    }
 
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public void setDay1(String day1) {
+        this.day1 = day1;
+    }
+
+    public void setDay2(String day2) {
+        this.day2 = day2;
+    }
+
+    public void setDay3(String day3) {
+        this.day3 = day3;
+    }
+
+    public void setDay4(String day4) {
+        this.day4 = day4;
+    }
+
+    public void setDay5(String day5) {
+        this.day5 = day5;
+    }
+
+    public void setDay6(String day6) {
+        this.day6 = day6;
+    }
+
+    public void setDay7(String day7) {
+        this.day7 = day7;
+    }
+
+    public void AddEmployee(String empName, String day1, String day2, String day3, String day4,
+                            String day5, String day6, String day7){
+        employeeSchedule.add(new Schedule(empName, day1, day2, day3, day4, day5, day6, day7));
     }
 
     public static void Delete(){
@@ -63,4 +111,34 @@ public class Schedule extends Person{
 
     }
 
+    public void write() {
+        System.out.println(employeeSchedule);
+        try {
+            FileOutputStream fos = new FileOutputStream("Schedule.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(this.employeeSchedule);
+
+            oos.close();
+            fos.close();
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+
+    public void read() {
+        try {
+            FileInputStream fis = new FileInputStream("Schedule.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            this.employeeSchedule = (ArrayList<Schedule>) ois.readObject();
+
+            ois.close();
+            fis.close();
+        }
+        catch (Exception e) {
+        }
+    }
 }

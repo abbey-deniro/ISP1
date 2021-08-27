@@ -1,5 +1,6 @@
 package sample;
 
+import Inventory.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,27 +9,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 //import javax.swing.table.TableColumn;
+import java.io.IOException;
 import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
+    protected Schedule s = new Schedule();
 
     public void run() {
         DateFormatter();
     }
-
-    @FXML private TableColumn<Schedule, String> employeeColumn;
+    @FXML private TableColumn<Schedule, String> name;
     @FXML private TableColumn<Schedule, String> day1Column;
     @FXML private TableColumn<Schedule, String> day2Column;
     @FXML private TableColumn<Schedule, String> day3Column;
@@ -36,62 +40,133 @@ public class Controller implements Initializable {
     @FXML private TableColumn<Schedule, String> day5Column;
     @FXML private TableColumn<Schedule, String> day6Column;
     @FXML private TableColumn<Schedule, String> day7Column;
+    @FXML private TableColumn<?, ?> totalHours;
     @FXML private TableView<Schedule> table;
+    @FXML private Button modifyButtonFX;
+    @FXML private static Button add;
+
+
 
     @FXML
-    private static Button add;
-
-    @FXML
-    private void handleButtonClick(ActionEvent event) {
+    private void btnAddEmployee(ActionEvent event) {
         System.out.println("Button clicked");
-        //add.setText("ADD");
+        Stage popup = new Stage();
+        try {
+            Scene scene1 = new Scene(FXMLLoader.load(getClass().getResource("AddEmployee.fxml")), 1000,
+                    800);
+            popup.setTitle("Add an Employees Schedule");
+            popup.setScene(scene1);
+            popup.setWidth(433);
+            popup.setHeight(438);
+
+        }catch(Exception e){e.printStackTrace();}
+        popup.showAndWait();
+
+        loadTable();
+        empTotalHours();
 
     }
+    public void loadTable(){
+        s.read();
+        if(s.getSchedule().size() == 0)
+            return;
 
-    public static String getWeekStartDate() {
-        Calendar calendar = Calendar.getInstance();
-        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
-            calendar.add(Calendar.DATE, -1);
-        }
-        Format dateFormat = new SimpleDateFormat("EEE MM-dd");
-        String res = dateFormat.format(calendar.getTime());
-        return res;
+        ObservableList<Schedule> list = FXCollections.observableArrayList(s.getSchedule());
+        table.setItems(list);
     }
 
-    public static String getWeekEndDate() {
-        Calendar calendar = Calendar.getInstance();
-        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
-            calendar.add(Calendar.DATE, 1);
-        }
-        calendar.add(Calendar.DATE, -1);
-        Format dateFormat = new SimpleDateFormat("EEE MM/dd");
-        String res = dateFormat.format(calendar.getTime());
-        return res;
+    public void empTotalHours() {
+        s.read();
+        if(s.getSchedule().size() == 0)
+            return;
+
+
+        ObservableList<Schedule> list = FXCollections.observableArrayList(s.getSchedule());
+        String nametoTH = name.getText();
+        System.out.println(nametoTH);
     }
+
+    @FXML private void btnRemoveItem(ActionEvent event){
+        Schedule schedule = table.getSelectionModel().getSelectedItem();
+        table.getItems().remove(schedule);
+
+        int index = s.getSchedule().indexOf(schedule);
+        s.getSchedule().remove(index);
+
+        s.write();
+    }
+
+
+    @FXML public void btnEditSchedule(ActionEvent event) throws IOException {
+        Schedule schedule = table.getSelectionModel().getSelectedItem();
+        int index = s.getSchedule().indexOf(schedule);
+        System.out.println(index);
+
+        Stage popup = new Stage();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AddEmployee.fxml")));
+
+        Button b = (Button) scene.lookup("#addToSave");
+        b.setText("Save");
+
+        TextField name = (TextField) scene.lookup("#empName");
+        TextField day1 = (TextField) scene.lookup("#mondayShiftFX");
+        TextField day2 = (TextField) scene.lookup("#tuesdayShiftFX");
+        TextField day3 = (TextField) scene.lookup("#wednesdayShiftFX");
+        TextField day4 = (TextField) scene.lookup("#thursdayShiftFX");
+        TextField day5 = (TextField) scene.lookup("#fridayShiftFX");
+        TextField day6 = (TextField) scene.lookup("#saturdayShiftFX");
+        TextField day7 = (TextField) scene.lookup("#sundayShiftFX");
+
+        try {
+            name.setText(schedule.getEmpName());
+            day1.setText(schedule.getDay1());
+            day2.setText(schedule.getDay2());
+            day3.setText(schedule.getDay3());
+            day4.setText(schedule.getDay4());
+            day5.setText(schedule.getDay5());
+            day6.setText(schedule.getDay6());
+            day7.setText(schedule.getDay7());
+        }catch(Exception e){e.printStackTrace();}
+
+        popup.setTitle("Edit an item");
+        popup.setUserData(index);
+        popup.setScene(scene);
+        popup.setWidth(433);
+        popup.setHeight(438);
+        popup.showAndWait();
+
+        loadTable();
+    }
+
     public String DateFormatter(){
-       String weekStartDate = getWeekStartDate();
-       String weekEndDate = getWeekEndDate();
-       String dateOf = weekStartDate + "- " + weekEndDate;
+        LocalDate today = LocalDate.now();
+        LocalDate monday = today;
+        while (monday.getDayOfWeek() != DayOfWeek.MONDAY) {
+            monday = monday.minusDays(1);
+        }
+        LocalDate sunday = today;
+        while (sunday.getDayOfWeek() != DayOfWeek.SUNDAY) {
+            sunday = sunday.plusDays(1);
+        }
+        String sundayDate = sunday.format(DateTimeFormatter.ofPattern("EEE MM-dd"));
+        String mondayDate = monday.format(DateTimeFormatter.ofPattern("EEE MM-dd"));
+
+       String weekStartDate = mondayDate;
+       String weekEndDate = sundayDate;
+       String dateOf = weekStartDate + " - " + weekEndDate;
        return dateOf;
     }
-
-    @FXML
-    private Label weekOfLabel;
-
+    @FXML private Label weekOfLabel;
 
     private void init() {
         String weekDate = DateFormatter();
         weekOfLabel.setText(weekDate);
     }
 
-    public static void Add(){
-       // Parent root = FXMLLoader.load(getClass().getResource("\"sample.fxml\""))
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         init();
-        employeeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("name"));
+        name.setCellValueFactory(new PropertyValueFactory<Schedule, String>("empName"));
         day1Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day1"));
         day2Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day2"));
         day3Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day3"));
@@ -101,12 +176,11 @@ public class Controller implements Initializable {
         day7Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day7"));
 
         final ObservableList<Schedule> list = FXCollections.observableArrayList(
-                new Schedule("Bob", "9-5", "4-6", "3-8", "2-10", "3-8", "5-6", "4-5")
-
+               // new Schedule("Bob", "9-5", "4-6", "3-8", "2-10", "3-8", "5-6", "4-5")
+               // new Schedule(s.name, s.day1, s.day2,s.day3,s.day4,s.day5,s.day6,s.day7)
         );
         this.table.setItems(list);
+        loadTable();
     }
-
-
 }
 
