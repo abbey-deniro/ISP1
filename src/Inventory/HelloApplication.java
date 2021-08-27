@@ -10,9 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 
 public class HelloApplication implements Initializable {
@@ -23,9 +25,9 @@ public class HelloApplication implements Initializable {
     @FXML private TableView<Item> table;
     @FXML private TableColumn<Item, String> categoryCol;
     @FXML private TableColumn<Item, String> itemCol;
-    @FXML private TableColumn<Item, String> quantityCol;
-    @FXML private TableColumn<Item, String> priceCol;
-    @FXML private TableColumn<Item, String> minQuantityCol;
+    @FXML private TableColumn<Item, Integer> quantityCol;
+    @FXML private TableColumn<Item, Float> priceCol;
+    @FXML private TableColumn<Item, Integer> minQuantityCol;
     @FXML private Button btnAdd;
 
     @FXML
@@ -123,9 +125,28 @@ public class HelloApplication implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         categoryCol.setCellValueFactory(new PropertyValueFactory<Item, String>("category"));
         itemCol.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
-        quantityCol.setCellValueFactory(new PropertyValueFactory<Item, String>("quantity"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<Item, String>("price"));
-        minQuantityCol.setCellValueFactory(new PropertyValueFactory<Item, String>("minNumber"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
+        priceCol.setCellValueFactory(new PropertyValueFactory<Item, Float>("price"));
+        minQuantityCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("minNumber"));
+
+        priceCol.setCellFactory(new Callback<TableColumn<Item, Float>, TableCell<Item, Float>>() {
+            @Override
+            public TableCell<Item, Float> call(TableColumn<Item, Float> itemStringTableColumn) {
+                final TableCell<Item, Float> cell = new TableCell<Item, Float>(){
+                    @Override
+                    protected void updateItem(Float price, boolean empty){
+                        super.updateItem(price, empty);
+
+                        if(empty)
+                            setText("");
+                        else{
+                            setText(NumberFormat.getCurrencyInstance().format(price));
+                        }
+                    }
+                };
+            return cell;
+            }
+        });
 
         loadTable();
     }
