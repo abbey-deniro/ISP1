@@ -14,7 +14,7 @@
     <Pane prefHeight="699.0" prefWidth="829.0">
         <children>
             <ButtonBar prefHeight="40.0" prefWidth="200.0" />
-            <Label layoutX="12.0" prefHeight="91.0" prefWidth="835.0" style="-fx-background-color: beige;" text="Inventory ">
+            <Label layoutX="12.0" prefHeight="91.0" prefWidth="968.0" style="-fx-background-color: beige;" text="Inventory ">
                 <padding>
                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                 </padding>
@@ -73,7 +73,7 @@
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-         <Button layoutX="918.0" layoutY="579.0" mnemonicParsing="false" onAction="#printItems" text="Print" />
+         <Button layoutX="918.0" layoutY="579.0" mnemonicParsing="false" onAction="#loadSchedule" text="Schedule" />
         </children>
     </Pane>
 

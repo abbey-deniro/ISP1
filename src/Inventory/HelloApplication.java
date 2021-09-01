@@ -129,6 +129,14 @@ public class HelloApplication implements Initializable {
         table.setItems(list);
     }
 
+    @FXML public void loadSchedule(ActionEvent event){
+        try {
+            ChangeScene.changeScene(event, "sample/sample.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         categoryCol.setCellValueFactory(new PropertyValueFactory<Item, String>("category"));
