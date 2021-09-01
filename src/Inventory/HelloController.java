@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class HelloController extends Application {
         Scene scene = new Scene(root, 1000, 800);
         stage.setMaximized(true);
         stage.setTitle("CoolBrosMS");
+        stage.getIcons().add(new Image("logo.png"));
         stage.setScene(scene);
         stage.show();
         //stage.getIcons().add(new Image("C:\\Users\\nsharma\\OneDrive - Neumont College of Computer Science\\Desktop\\Neumont\\Year 2\\Sprint 7\\Sprint 8\\CoolBroISS\\Images\\icon.png"));

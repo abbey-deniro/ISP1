@@ -36,10 +36,12 @@ public class AddItemController extends HelloApplication implements Initializable
         } catch (Exception e) {
         }
 
+        String price = txtPrice.getText().contains("$") ? txtPrice.getText().replace("$", "") : txtPrice.getText();
+
         i.read();
         if (index == -1){
             try {
-                super.i.addItems(txtName.getText(), Integer.parseInt(txtQuantity.getText()), Float.parseFloat(txtPrice.getText()), Integer.parseInt(txtMinQuantity.getText()), txtCategory.getText());
+                super.i.addItems(txtName.getText(), Integer.parseInt(txtQuantity.getText()), Float.parseFloat(price), Integer.parseInt(txtMinQuantity.getText()), txtCategory.getText());
             } catch (Exception e) {
                 System.out.println("Invalid input. Please try again.");
             }

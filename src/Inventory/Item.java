@@ -1,6 +1,7 @@
 package Inventory;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 public class Item implements Serializable {
     String name;
@@ -71,4 +72,9 @@ public class Item implements Serializable {
         this.minNumber = minNumber;
     }
     public Item(){}
+
+    @Override
+    public String toString(){
+        return this.name + ": " + NumberFormat.getCurrencyInstance().format(this.price) + " Quantity: " + this.quantity;
+    }
 }

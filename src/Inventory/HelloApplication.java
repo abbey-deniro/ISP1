@@ -9,12 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HelloApplication implements Initializable {
@@ -40,6 +42,7 @@ public class HelloApplication implements Initializable {
         try {
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("addItem.fxml")), 1000, 800);
             popup.setTitle("Add an item");
+            popup.getIcons().add(new Image("logo.png"));
             popup.setScene(scene);
             popup.setWidth(300);
             popup.setHeight(400);
@@ -84,6 +87,7 @@ public class HelloApplication implements Initializable {
         }catch(Exception e){e.printStackTrace();}
 
         popup.setTitle("Edit an item");
+        popup.getIcons().add(new Image("logo.png"));
         popup.setUserData(index);
         popup.setScene(scene);
         popup.setWidth(300);
@@ -105,7 +109,11 @@ public class HelloApplication implements Initializable {
 
     @FXML private void removeQuantity(ActionEvent event){
         Item item = table.getSelectionModel().getSelectedItem();
-        item.setQuantity(item.getQuantity()-1);
+
+        if(item.getQuantity() > 0) {
+            item.setQuantity(item.getQuantity() - 1);
+        }
+        
         i.write();
         table.refresh();
         table.getSelectionModel().getSelectedItem();
@@ -128,6 +136,28 @@ public class HelloApplication implements Initializable {
         quantityCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
         priceCol.setCellValueFactory(new PropertyValueFactory<Item, Float>("price"));
         minQuantityCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("minNumber"));
+
+        table.setRowFactory(new Callback<TableView<Item>, TableRow<Item>>() {
+            @Override
+            public TableRow<Item> call(TableView<Item> itemTableView) {
+                final TableRow<Item> row = new TableRow<Item>(){
+                    @Override
+                    protected void updateItem(Item item, boolean empty){
+                        super.updateItem(item, empty);
+                        //System.out.println(item);
+
+                        if(!empty) {
+                            try {
+                                if (item.getQuantity() < item.getMinNumber()) {
+                                    setStyle("-fx-background-color:lightcoral;");
+                                }
+                            }catch(Exception e){}
+                        }
+                    }
+                };
+                return row;
+            }
+        });
 
         priceCol.setCellFactory(new Callback<TableColumn<Item, Float>, TableCell<Item, Float>>() {
             @Override
