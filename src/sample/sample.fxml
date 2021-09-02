@@ -26,15 +26,15 @@
             </Label>
             <TableView fx:id="table" layoutX="283.0" layoutY="96.0" prefHeight="368.0" prefWidth="679.0">
               <columns>
-                <TableColumn id="employeeColumn" fx:id="name" prefWidth="75.0" text="Employee" />
-                <TableColumn id="day1Column" fx:id="day1Column" prefWidth="75.0" text="Monday" />
-                  <TableColumn id="day2Column" fx:id="day2Column" prefWidth="75.0" text="Tuesday" />
-                  <TableColumn id="day3Column" fx:id="day3Column" prefWidth="75.0" text="Wednesday" />
-                  <TableColumn id="day4Column" fx:id="day4Column" prefWidth="75.0" text="Thursday" />
-                  <TableColumn id="day5Column" fx:id="day5Column" prefWidth="75.0" text="Friday" />
-                  <TableColumn id="day6Column" fx:id="day6Column" prefWidth="75.0" text="Saturday" />
-                  <TableColumn id="day7Column" fx:id="day7Column" prefWidth="75.0" text="Sunday" />
-                  <TableColumn id="totalHours" fx:id="totalHours" prefWidth="75.0" text="Total Hours" />
+                <TableColumn id="employeeColumn" fx:id="name" prefWidth="75.0" sortable="false" text="Employee" />
+                <TableColumn id="day1Column" fx:id="day1Column" prefWidth="75.0" text="Monday" sortable="false"/>
+                  <TableColumn id="day2Column" fx:id="day2Column" prefWidth="75.0" text="Tuesday" sortable="false"/>
+                  <TableColumn id="day3Column" fx:id="day3Column" prefWidth="75.0" text="Wednesday" sortable="false"/>
+                  <TableColumn id="day4Column" fx:id="day4Column" prefWidth="75.0" text="Thursday" sortable="false"/>
+                  <TableColumn id="day5Column" fx:id="day5Column" prefWidth="75.0" text="Friday" sortable="false"/>
+                  <TableColumn id="day6Column" fx:id="day6Column" prefWidth="75.0" text="Saturday" sortable="false" />
+                  <TableColumn id="day7Column" fx:id="day7Column" prefWidth="75.0" text="Sunday" sortable="false" />
+                  <TableColumn id="totalHours" fx:id="totalHours" prefWidth="75.0" text="Total Hours" sortable="false"/>
               </columns>
             </TableView>
             <ButtonBar layoutX="689.0" layoutY="53.0" prefHeight="40.0" prefWidth="273.0">

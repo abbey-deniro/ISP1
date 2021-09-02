@@ -74,7 +74,7 @@ public class AddEmployeeController extends Controller implements Initializable {
                 boolean sundayisInputValid = isInputValid(sundayShiftFX);
 
                 if(mondayisInputValid || tuesdayisInputValid || wednesdayisInputValid || thursdayisInputValid ||
-                        fridayisInputValid || saturdayisInputValid || sundayisInputValid != false) {
+                        fridayisInputValid || saturdayisInputValid || sundayisInputValid == true) {
                     System.out.println("line 40 " + empName.getText() + " " + mondayShiftFX.getText() + " " +
                                 tuesdayShiftFX.getText() + " " +
                                 wednesdayShiftFX.getText() + " " +  thursdayShiftFX.getText() + " " +  fridayShiftFX.getText() + " " +
