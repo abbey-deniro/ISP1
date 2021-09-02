@@ -63,7 +63,6 @@ public class Controller implements Initializable {
         popup.showAndWait();
 
         loadTable();
-        empTotalHours();
 
     }
     public void loadTable(){
@@ -73,17 +72,6 @@ public class Controller implements Initializable {
 
         ObservableList<Schedule> list = FXCollections.observableArrayList(s.getSchedule());
         table.setItems(list);
-    }
-
-    public void empTotalHours() {
-        s.read();
-        if(s.getSchedule().size() == 0)
-            return;
-
-
-        ObservableList<Schedule> list = FXCollections.observableArrayList(s.getSchedule());
-        String nametoTH = name.getText();
-        System.out.println(nametoTH);
     }
 
     @FXML private void btnRemoveItem(ActionEvent event){
@@ -100,11 +88,9 @@ public class Controller implements Initializable {
     @FXML public void btnEditSchedule(ActionEvent event) throws IOException {
         Schedule schedule = table.getSelectionModel().getSelectedItem();
         int index = s.getSchedule().indexOf(schedule);
-        System.out.println(index);
 
         Stage popup = new Stage();
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AddEmployee.fxml")));
-
         Button b = (Button) scene.lookup("#addToSave");
         b.setText("Save");
 

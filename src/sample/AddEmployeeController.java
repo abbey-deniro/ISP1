@@ -24,12 +24,10 @@ public class AddEmployeeController extends Controller implements Initializable {
 
     @FXML
     void addEmployeeToSchedule(ActionEvent event) {
-        System.out.println("employee add button clicked");
         int index = -1;
         Stage stage = (Stage) addToSave.getScene().getWindow();
 
         try {
-            System.out.println("Getting index");
             index = (int) stage.getUserData();
 
         }catch(Exception e){}
@@ -37,18 +35,10 @@ public class AddEmployeeController extends Controller implements Initializable {
         s.read();
         if(index == -1){
             try {
-                System.out.println("line 40 " + empName.getText() + " " + mondayShiftFX.getText() + " " +
-                                tuesdayShiftFX.getText() + " " +
-                                wednesdayShiftFX.getText() + " " +  thursdayShiftFX.getText() + " " +  fridayShiftFX.getText() + " " +
-                        saturdayShiftFX.getText() + " " +  sundayShiftFX.getText());
                 super.s.AddEmployee(empName.getText(), mondayShiftFX.getText(), tuesdayShiftFX.getText(),
                         wednesdayShiftFX.getText(), thursdayShiftFX.getText(), fridayShiftFX.getText(),
                         saturdayShiftFX.getText(), sundayShiftFX.getText());
-//                super.s.AddEmployee(empName.getText(), mondayShiftFX.getText(), tuesdayShiftFX.getText(),
-//                        wednesdayShiftFX.getText(), thursdayShiftFX.getText(), fridayShiftFX.getText(),
-//                        saturdayShiftFX.getText(), sundayShiftFX.getText());
-                System.out.println();
-                s.write();
+               // s.write();
             }catch (Exception e) {
                 System.out.println("Invalid input. Please try again.");
             }
@@ -72,21 +62,6 @@ public class AddEmployeeController extends Controller implements Initializable {
         s.write();
         stage.close();
     }
-
-
-//    @FXML void add(ActionEvent event) {
-//    s.read();
-//    try {
-//        super.s.AddEmployee(empNameFX.getText(), mondayShiftFX.getText(),
-//                tuesdayShiftFX.getText(), wednesdayShiftFX.getText(), thursdayShiftFX.getText(),
-//                fridayShiftFX.getText(), saturdayShiftFX.getText(), sundayShiftFX.getText());
-//    }catch (Exception e){
-//        System.out.println("Try again");
-//    }
-//    s.write();
-//    Stage stages = (Stage) btnAdd.getScene().getWindow();
-//    stages.close();
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
