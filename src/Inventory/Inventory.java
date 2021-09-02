@@ -12,18 +12,6 @@ public class Inventory extends Item implements Serializable {
         items.add(new Item(name,quantity,price,minNumber, category));
     }
 
-    public void editItems(String name, int quantity, int price, int minNumber, int itemNumber) {
-        itemNumber--;
-        items.get(itemNumber).setName(name);
-        items.get(itemNumber).setQuantity(quantity);
-        items.get(itemNumber).setPrice(price);
-        items.get(itemNumber).setMinNumber(minNumber);
-
-    }
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
     public void write() {
         try {
             FileOutputStream fos = new FileOutputStream("Inventory.ser");
@@ -36,7 +24,6 @@ public class Inventory extends Item implements Serializable {
         }
         catch(Exception e)
         {
-
         }
     }
 
@@ -52,5 +39,9 @@ public class Inventory extends Item implements Serializable {
         }
         catch (Exception e) {
         }
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 }

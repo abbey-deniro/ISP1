@@ -21,8 +21,6 @@ import java.util.ResourceBundle;
 
 public class HelloApplication implements Initializable {
     protected Inventory i = new Inventory();
-    @FXML
-    private Label welcomeText;
 
     @FXML private TableView<Item> table;
     @FXML private TableColumn<Item, String> categoryCol;
@@ -31,11 +29,6 @@ public class HelloApplication implements Initializable {
     @FXML private TableColumn<Item, Float> priceCol;
     @FXML private TableColumn<Item, Integer> minQuantityCol;
     @FXML private Button btnAdd;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML private void btnAddItem(ActionEvent event){
         Stage popup = new Stage();
@@ -58,9 +51,10 @@ public class HelloApplication implements Initializable {
         table.getItems().remove(item);
 
         int index = i.getItems().indexOf(item);
-        i.getItems().remove(index);
-
-        i.write();
+        if (index != -1) {
+            i.getItems().remove(index);
+            i.write();
+        }
     }
 
     @FXML private void btnEditItem(ActionEvent event) throws IOException {
@@ -96,7 +90,6 @@ public class HelloApplication implements Initializable {
 
         loadTable();
     }
-
 
     @FXML private void addQuantity(ActionEvent event){
         Item item = table.getSelectionModel().getSelectedItem();
@@ -152,8 +145,6 @@ public class HelloApplication implements Initializable {
                     @Override
                     protected void updateItem(Item item, boolean empty){
                         super.updateItem(item, empty);
-                        //System.out.println(item);
-
                         if(!empty) {
                             try {
                                 if (item.getQuantity() < item.getMinNumber()) {

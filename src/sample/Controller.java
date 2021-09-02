@@ -1,6 +1,8 @@
 package sample;
 
+import Inventory.ChangeScene;
 import Inventory.Item;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,10 +44,6 @@ public class Controller implements Initializable {
     @FXML private TableColumn<Schedule, String> day7Column;
     @FXML private TableColumn<?, ?> totalHours;
     @FXML private TableView<Schedule> table;
-    @FXML private Button modifyButtonFX;
-    @FXML private static Button add;
-
-
 
     @FXML
     private void btnAddEmployee(ActionEvent event) {
@@ -66,6 +64,16 @@ public class Controller implements Initializable {
         empTotalHours();
 
     }
+
+    @FXML
+    public void loadInventory(ActionEvent event){
+        try {
+            ChangeScene.changeScene(event, "Inventory/hello-view.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadTable(){
         s.read();
         if(s.getSchedule().size() == 0)
@@ -175,11 +183,6 @@ public class Controller implements Initializable {
         day6Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day6"));
         day7Column.setCellValueFactory(new PropertyValueFactory<Schedule, String>("day7"));
 
-        final ObservableList<Schedule> list = FXCollections.observableArrayList(
-               // new Schedule("Bob", "9-5", "4-6", "3-8", "2-10", "3-8", "5-6", "4-5")
-               // new Schedule(s.name, s.day1, s.day2,s.day3,s.day4,s.day5,s.day6,s.day7)
-        );
-        this.table.setItems(list);
         loadTable();
     }
 }

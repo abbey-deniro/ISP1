@@ -103,6 +103,7 @@ public class Schedule implements Serializable {
         employeeSchedule.add(new Schedule(empName, day1, day2, day3, day4, day5, day6, day7));
     }
 
+    // Dont delete these methods, for whatever reason it breaks read()
     public static void Delete(){
 
     }

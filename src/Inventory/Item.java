@@ -9,7 +9,6 @@ public class Item implements Serializable {
     int quantity;
     float price;
     int minNumber;
-    int ItemNumber;
 
     public void setCategory(String category) {
         this.category = category;
@@ -17,14 +16,6 @@ public class Item implements Serializable {
 
     public String getCategory() {
         return category;
-    }
-
-    public int getItemNumber() {
-        return ItemNumber;
-    }
-
-    public void setItemNumber(int itemNumber) {
-        ItemNumber = itemNumber;
     }
 
     public int getMinNumber() {
@@ -60,11 +51,6 @@ public class Item implements Serializable {
     }
 
     public Item(String name, int quantity, float price,int minNumber, String category) {
-        if(quantity<minNumber){
-            //turnBoxred
-        }else{
-            //boxisgreen
-        }
         this.name = name;
         this.quantity = quantity;
         this.price = price;

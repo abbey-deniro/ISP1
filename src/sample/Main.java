@@ -22,19 +22,14 @@ import java.util.Date;
 
 public class Main extends Application {
 
-    private TableView table = new TableView();
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Cool Bros MS");
+        //primaryStage.setMaximized(true);
         primaryStage.getIcons().add(new Image("logo.png"));
-        primaryStage.setScene(new Scene(root, 923, 596));
+        primaryStage.setScene(new Scene(root, 770, 550));
         primaryStage.show();
-
-        //TableView<> table = new TableView<>();
-        TableColumn fileNameCol = new TableColumn("File Name");
-        table.getColumns().add(fileNameCol);
 
     }
 
